@@ -1,12 +1,15 @@
 package com.utility.demo.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -23,6 +26,11 @@ import jakarta.persistence.Table;
 	private String email;
 	private String fone;
 	private String password;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>();
+	
+	
 	
 	public User( ) {
 		
@@ -78,6 +86,13 @@ import jakarta.persistence.Table;
 		this.password = password;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -94,6 +109,7 @@ import jakarta.persistence.Table;
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
 
 
 	
