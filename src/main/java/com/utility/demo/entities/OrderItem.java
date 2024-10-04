@@ -3,6 +3,7 @@ package com.utility.demo.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utility.demo.entities.PK.OrderItemPk;
 
 import jakarta.persistence.EmbeddedId;
@@ -33,6 +34,8 @@ public class OrderItem implements Serializable {
 		this.price = price;
 	}
 
+	
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
