@@ -26,10 +26,6 @@ import com.utility.demo.repositories.UserRepository;
 public class TestConfig implements CommandLineRunner {
 
 	
-  
-	
-	
-	
 	@Autowired
 	private UserRepository userRepository;
 
