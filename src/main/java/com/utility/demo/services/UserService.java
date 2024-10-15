@@ -13,6 +13,8 @@ import com.utility.demo.repositories.UserRepository;
 import com.utility.demo.services.exceptions.DatabaseException;
 import com.utility.demo.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -48,12 +50,15 @@ public void delete(Long id) {
 }
 
 public User update(Long id, User obj) {
+	try {
 	User entity = repository.getReferenceById(id);
 	updateData(entity, obj);
 	return repository.save(entity);
+} catch (EntityNotFoundException e) {
+	
+	 throw new ResourceNotFoundException(id);
 }
-
-
+}
 private void updateData(User entity, User obj) {
 	entity.setName(obj.getName());
 	entity.setEmail(obj.getEmail());
